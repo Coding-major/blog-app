@@ -1,0 +1,16 @@
+<%-include("partials/header")  -%>
+
+<h1><%= composeHeading %> </h1>
+<form action="/compose" method="post">
+    <div>
+        <label for="titleName">Title</label><br>
+        <input type="text" name="titleName" id="titleName" class="input" autofocus><br>
+    </div>
+    <div>
+        <label for="post">Post</label><br>
+        <textarea name="composeMessage" id="post" cols="96" rows="4" minlength="140" class="input"></textarea><br>
+    </div>
+    <button type="submit" name="mysubmit" id="mybutton">publish</button>
+</form>
+
+<%-include("partials/footer") -%> 
