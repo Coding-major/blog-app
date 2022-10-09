@@ -1,11 +1,11 @@
 <%-include("partials/header")  -%> 
     <h1><%= homeHeading %> </h1>
     <p><%= homeContent %> </p>
-    <% arrayPosts.forEach(function(i) { %>
+    <% maincontent.forEach(function(i) { %>
         <h2><%= i.title %> </h2>
         <p>
-            <%= i.message.slice(0, 100) + "...." %>
-            <a href="/posts/<%=i.title%>">Read more</a>
+            <%= i.content.slice(0, 60) + "...." %>
+            <a href="/posts/<%=i._id%>">Read more</a>
         </p>
     <% }) %>
 
