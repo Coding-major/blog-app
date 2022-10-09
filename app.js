@@ -1,5 +1,3 @@
-//jshint esversion:6
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -30,14 +28,6 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 
 
-
-
-
-// var title = "";
-// var message = "";
-//const arrayPost = [];
-
-
 app.get("/", (req, res) => {
   let home = "Home"
   posts.find({}, function(err, story) {
@@ -45,11 +35,6 @@ app.get("/", (req, res) => {
       homeHeading: home,
       homeContent: homeStartingContent,
       maincontent: story
-      //arrayPosts: arrayPost,
-      // titles: objectPost.title,
-      // messages: objectPost.message
-      // theMessage: message,
-      // title: title
     })
   })
   
@@ -97,9 +82,7 @@ app.post("/compose", (req, res) => {
 
 })
 
-// app.get("/posts", (req, res) => {
-//   res.redirect("/posts/:postTitle")
-// })
+
 
 app.get("/posts/:id", (req, res) => {
   //const idCheck = _.lowerCase(req.params.id);
