@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash")
 const mongoose = require("mongoose")
+require('dotenv').config()
 
 
 
@@ -11,7 +12,15 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 app.use(express.static("public"))
 
-mongoose.connect("mongodb://localhost:27017/blogDB")
+//mongoose.connect("mongodb://127.0.0.1:27017/blogDB")
+
+const connectDB = (url) => {
+  return mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+  })
+}
+
 
 const postSchema = new mongoose.Schema(
   {
@@ -69,7 +78,7 @@ app.get("/compose", (req, res) => {
 
 app.post("/compose", (req, res) => {
 
-  const post = new Post({
+  const post = new posts({
     title: req.body.titleName,
     content: req.body.composeMessage
   });
@@ -99,6 +108,15 @@ app.get("/posts/:id", (req, res) => {
 
 
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
+const port = 3000;
+
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI)
+        app.listen(port, console.log(`server is listening to port ${port}.....`))
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+start()
