@@ -109,12 +109,12 @@ app.get("/posts/:id", (req, res) => {
 
 
 
-const port = 3000;
+const port = process.env.PORT || 80;
 
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
-        app.listen(port,console.log(`server is listening to port ${port}.....`))
+        app.listen(port, console.log(`server is listening to port ${port}.....`))
     } catch (err) {
         console.log(err)
     }
